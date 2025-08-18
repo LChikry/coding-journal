@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rock Paper Scissor</title>
+		<link rel="stylesheet" href="./rock-paper-scissor.css" media="screen" />
+		<script src="./rock-paper-scissor.js" defer></script>
+		<script
+			src="https://kit.fontawesome.com/6e5ef4570f.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<main>
+			<h1>RPS &mdash; Enjoy!</h1>
+			<div class="game-section">
+				<div class="game-buttons">
+					<button
+						type="button"
+						class="computer-rock-btn game-btn computer-choice-btn hidden"
+					>
+						<i
+							class="fa-solid fa-hand-back-fist fa-2xl"
+							aria-label="hand rock"
+							role="img"
+						></i>
+					</button>
+					<button
+						type="button"
+						class="computer-paper-btn game-btn computer-choice-btn hidden"
+					>
+						<i
+							class="fa-solid fa-hand fa-2xl"
+							aria-label="hand paper"
+							role="img"
+						></i>
+					</button>
+					<button
+						type="button"
+						class="computer-scissor-btn game-btn computer-choice-btn hidden"
+					>
+						<i
+							class="fa-solid fa-hand-scissors fa-2xl"
+							aria-label="hand scissor"
+							role="img"
+						></i>
+					</button>
+				</div>
+
+				<p id="score"></p>
+				<p id="game-result" class="removed"></p>
+
+				<div class="game-buttons">
+					<button
+						type="button"
+						class="user-rock-btn game-btn user-choice-btn"
+					>
+						<i
+							class="fa-solid fa-hand-back-fist fa-2xl"
+							aria-label="hand rock"
+							role="img"
+						></i>
+					</button>
+					<button
+						type="button"
+						class="user-paper-btn game-btn user-choice-btn"
+					>
+						<i
+							class="fa-solid fa-hand fa-2xl"
+							aria-label="hand paper"
+							role="img"
+						></i>
+					</button>
+					<button
+						type="button"
+						class="user-scissor-btn game-btn user-choice-btn"
+					>
+						<i
+							class="fa-solid fa-hand-scissors fa-2xl"
+							aria-label="hand scissor"
+							role="img"
+						></i>
+					</button>
+				</div>
+			</div>
+		</main>
+		<footer class="reset-section">
+			<p class="reset-btn">
+				<i class="fa-solid fa-arrow-rotate-left fa-xs reset-icon"></i>
+				Reset Score
+			</p>
+		</footer>
+	</body>
+</html>

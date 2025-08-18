@@ -1,0 +1,138 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--HEADER-BG-COLOR: #333;
+	--HEADER-COLOR: whitesmoke;
+}
+
+html {
+	font-family: "Nunito", sans-serif;
+	font-size: 1.5rem;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+header {
+	background-color: var(--HEADER-BG-COLOR);
+	color: var(--HEADER-COLOR);
+}
+
+.navbar--mobile {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.25rem 0.5rem;
+	flex-flow: row nowrap;
+	max-width: 1280px;
+	margin: auto;
+}
+
+.button--menu {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	width: 48px;
+	height: 48px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.button--menu__icon,
+.button--menu__icon::before,
+.button--menu__icon::after {
+	background-color: var(--HEADER-COLOR);
+	width: 1.8rem;
+	height: 0.2rem;
+	border-radius: 0.2rem;
+	position: absolute;
+}
+
+.button--menu__icon::before,
+.button--menu__icon::after {
+	content: "";
+}
+
+.button--menu__icon::before {
+	transform: translate(-0.9rem, -0.6rem);
+}
+
+.button--menu__icon::after {
+	transform: translate(-0.9rem, 0.6rem);
+}
+
+.navbar {
+	background-color: var(--HEADER-BG-COLOR);
+	display: none;
+	transform-origin: top center;
+	animation: showMenu 0.5s ease-in-out;
+}
+
+@keyframes showMenu {
+	0% {
+		transform: scaleY(0);
+	}
+
+	80% {
+		transform: scaleY(1.2);
+	}
+
+	100% {
+		transform: scaleY(1);
+	}
+}
+
+:is(header:focus-within) .navbar {
+	display: block;
+}
+
+:is(header:focus-within) .button--menu__icon {
+	background-color: transparent;
+}
+
+:is(header:focus-within) .button--menu__icon::before {
+	transform: translate(-0.9rem) rotate(45deg);
+}
+
+:is(header:focus-within) .button--menu__icon::after {
+	transform: translate(-0.9rem) rotate(-45deg);
+}
+
+.navbar__list {
+	list-style: none;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.navbar__list--item {
+	border-top: 1px solid var(--HEADER-COLOR);
+	padding: 0.5rem;
+}
+
+.navbar__list--url {
+	text-align: center;
+	display: block;
+}
+
+.navbar__list--url:any-link {
+	color: var(--HEADER-COLOR);
+	text-decoration: none;
+}
+
+.navbar__list--url:focus,
+.navbar__list--url:hover,
+.navbar__list--url:active {
+	color: green;
+	filter: brightness(120%);
+	transform: scale(1.1);
+	transition: all 0.3s;
+}

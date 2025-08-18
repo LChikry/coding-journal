@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/*  --------------- DEFAULTS ------------------- */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--FF: "Ubuntu", "Montserrat", sans-serif;
+	--FS-Larger: 1.25em;
+	--FS-Large: 1.5em;
+	--FS-SMALLER: 0.9em;
+	--FS-SMALL: 0.8em;
+
+	--PAGE-BG-COLOR: #141414;
+	--CARD-BG-COLOR: #1f1f1f;
+	--CONTENT-COLOR: whitesmoke;
+	--ROLE-COLOR: #c1e247;
+	--SLOGAN-COLOR: #bcbcbc;
+
+	--BUTTON-TXT-COLOR: whitesmoke;
+	--BUTTON-COLOR: #333333;
+	--BUTTON-HV-COLOR: #42931a;
+	--BUTTON-GAP: 0.7rem;
+	--BUTTON-FONT: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+	--BUTTON-RADIUS: 0.5em;
+	--BUTTON-PADDING: 0.5rem 1.1rem;
+	--BUTTON-SHADOW: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/*  --------------- GLOBAL PAGE STYLE ------------------- */
+
+html {
+	font-family: var(--FF);
+	background: var(--BG-COLOR);
+}
+
+body {
+	background: url(/assets/bg/blob-scene-mobile.svg) center/cover no-repeat;
+	color: var(--CONTENT-COLOR);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+/* Makes the card a bit bigger for tablet screens */
+@media only screen and (min-width: 850px) and (max-width: 1200px) {
+	html {
+		font-size: var(--FS-Larger);
+	}
+}
+
+@media only screen and (min-width: 1400px) {
+	body {
+		background-image: url(/assets//bg/blob-scene-desktop.svg);
+	}
+}
+
+/*  --------------- CUSTOM STYLE BEGIN ------------------- */
+
+.card {
+	border-radius: 0.5em;
+	background-color: var(--CARD-BG-COLOR);
+	padding: 1.5rem;
+	min-width: min(100% - 2rem, 325px);
+
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	gap: 1.5rem;
+}
+
+/* Makes card/flex elements be: identity__figure + identity__slogan + links */
+.card > .identity {
+	display: contents;
+}
+
+.identity__figure {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1rem;
+	align-items: center;
+	text-align: center;
+}
+
+.identity__picture {
+	display: block;
+	border-radius: 50%;
+	width: 10em;
+	height: auto;
+}
+
+.identity__name {
+	font-size: var(--FS-Large);
+	margin-bottom: 0.5rem;
+}
+
+.identity__role {
+	color: var(--ROLE-COLOR);
+	font-size: var(--FS-SMALLER);
+}
+
+.identity__slogan {
+	color: var(--SLOGAN-COLOR);
+	font-size: var(--FS-SMALL);
+	font-weight: light;
+	text-align: center;
+}
+
+/*  -------------- LINKS SECTIONS ----------------------*/
+
+/* Bypass the anchor tag to the button tags */
+.links > * {
+	display: contents;
+}
+
+.links {
+	display: flex;
+	flex-flow: column nowrap;
+	flex-grow: 1;
+	gap: var(--BUTTON-GAP);
+}
+
+/*  -------------- BUTTONS ---------------------*/
+
+.button {
+	border-radius: var(--BUTTON-RADIUS);
+	background-color: var(--BUTTON-COLOR);
+	color: var(--BUTTON-TXT-COLOR);
+	font-family: var(--BUTTON-FONT);
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: all 0.2s ease-in-out;
+}
+
+.button:hover,
+.button:active {
+	background-color: var(--BUTTON-HV-COLOR);
+	cursor: pointer;
+	transform: translateY(-2px);
+	box-shadow: var(--BUTTON-SHADOW);
+}
+
+/*  LINKS BUTTONS ---------------------*/
+
+.links__button {
+	text-decoration: none;
+	padding: var(--BUTTON-PADDING);
+	outline: none;
+	border: none;
+}
+
+.button__icon {
+	filter: brightness(0) invert(1);
+}

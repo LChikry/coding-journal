@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script defer>
+			let calc = "";
+		</script>
+	</head>
+	<body>
+		<button onclick="calc += '1'; console.log(calc)" type="button">
+			1
+		</button>
+		<button onclick="calc += '2'; console.log(calc)" type="button">
+			2
+		</button>
+		<button onclick="calc += '3'; console.log(calc)" type="button">
+			3
+		</button>
+		<button onclick="calc += ' + '; console.log(calc)" type="button">
+			+
+		</button>
+		<br />
+		<button onclick="calc += '4'; console.log(calc)" type="button">
+			4
+		</button>
+		<button onclick="calc += '5'; console.log(calc)" type="button">
+			5
+		</button>
+		<button onclick="calc += '6'; console.log(calc)" type="button">
+			6
+		</button>
+		<button onclick="calc += ' - '; console.log(calc)" type="button">
+			-
+		</button>
+		<br />
+		<button onclick="calc += '7'; console.log(calc)" type="button">
+			7
+		</button>
+		<button onclick="calc += '8'; console.log(calc)" type="button">
+			8
+		</button>
+		<button onclick="calc += '9'; console.log(calc)" type="button">
+			9
+		</button>
+		<button onclick="calc += ' * '; console.log(calc)" type="button">
+			*
+		</button>
+		<br />
+		<button onclick="calc += '0'; console.log(calc)" type="button">
+			0
+		</button>
+		<button onclick="calc += '.'; console.log(calc)" type="button">
+			.
+		</button>
+		<button onclick="calc = eval(calc); console.log(calc)" type="button">
+			=
+		</button>
+		<button onclick="calc += ' / '; console.log(calc)" type="button">
+			/
+		</button>
+		<br />
+		<button onclick="calc = ''; console.log('cleared')" type="button">
+			Clear
+		</button>
+	</body>
+</html>

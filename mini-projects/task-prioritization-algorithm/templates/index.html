@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Task Prioritizer</title>
+		<style>
+			body {
+				font-family: "Inter", sans-serif; /* Using Inter font */
+				background-color: #f4f7f6;
+				color: #333;
+				margin: 0;
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				min-height: 100vh;
+			}
+			h1 {
+				text-align: center;
+				margin-top: 2rem;
+				color: #2c3e50;
+				font-size: 2.5rem;
+			}
+			form {
+				text-align: center;
+				margin-top: 1.5rem;
+			}
+			button {
+				background-color: #3498db;
+				color: white;
+				border: none;
+				padding: 12px 25px;
+				border-radius: 8px;
+				cursor: pointer;
+				font-size: 1.1rem;
+				transition: background-color 0.3s ease, transform 0.2s ease;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+			button:hover {
+				background-color: #2980b9;
+				transform: translateY(-2px);
+			}
+			button:active {
+				transform: translateY(0);
+			}
+			#status {
+				text-align: center;
+				margin-top: 1.5rem;
+				font-size: 1rem;
+				color: #555;
+				background-color: #e8f4f8;
+				padding: 10px 20px;
+				border-radius: 8px;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+			}
+			table {
+				width: 90%; /* Increased width for better display */
+				max-width: 1000px; /* Max width for large screens */
+				margin: 2rem auto;
+				border-collapse: separate; /* Use separate for rounded corners */
+				border-spacing: 0; /* Remove space between cells */
+				font-family: Arial, sans-serif;
+				box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+				border-radius: 12px; /* Rounded corners for the whole table */
+				overflow: hidden; /* Ensures rounded corners are applied */
+			}
+			th,
+			td {
+				padding: 1rem 1.2rem; /* Increased padding */
+				border-bottom: 1px solid #eee; /* Lighter border */
+				text-align: left;
+			}
+			th {
+				background-color: #ecf0f1;
+				color: #34495e;
+				font-weight: bold;
+				text-transform: uppercase;
+				font-size: 0.9rem;
+			}
+			tr:last-child td {
+				border-bottom: none; /* No bottom border for the last row */
+			}
+			tbody tr:nth-child(even) {
+				background-color: #f9f9f9; /* Zebra striping */
+			}
+			tbody tr:hover {
+				background-color: #eef7fc; /* Hover effect */
+			}
+			/* Specific rounded corners for table headers */
+			th:first-child {
+				border-top-left-radius: 12px;
+			}
+			th:last-child {
+				/* This will be the last current header, not the new one */
+				border-top-right-radius: 12px;
+			}
+			/* Specific rounded corners for table data in the last row */
+			tr:last-child td:first-child {
+				border-bottom-left-radius: 12px;
+			}
+			tr:last-child td:last-child {
+				border-bottom-right-radius: 12px;
+			}
+
+			/* NEW: Styles for the new "No." column */
+			th:nth-child(1) {
+				/* Applies to the first <th> */
+				border-top-left-radius: 12px; /* Ensure first header retains rounded corner */
+			}
+			th:nth-child(4) {
+				/* Applies to the new last <th> */
+				border-top-right-radius: 12px; /* Ensure last header gets rounded corner */
+			}
+			tr:last-child td:nth-child(1) {
+				/* Applies to the first <td> in the last row */
+				border-bottom-left-radius: 12px; /* Ensure first cell in last row retains rounded corner */
+			}
+			tr:last-child td:nth-child(4) {
+				/* Applies to the new last <td> in the last row */
+				border-bottom-right-radius: 12px; /* Ensure last cell in last row gets rounded corner */
+			}
+
+			/* Responsive adjustments */
+			@media (max-width: 768px) {
+				table,
+				thead,
+				tbody,
+				th,
+				td,
+				tr {
+					display: block;
+				}
+				thead tr {
+					position: absolute;
+					top: -9999px;
+					left: -9999px;
+				}
+				tr {
+					margin-bottom: 15px;
+					border: 1px solid #ccc;
+					border-radius: 8px;
+					box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+				}
+				td {
+					border: none;
+					border-bottom: 1px solid #eee;
+					position: relative;
+					padding-left: 50%;
+					text-align: right;
+				}
+				td:before {
+					position: absolute;
+					top: 0;
+					left: 6px;
+					width: 45%;
+					padding-right: 10px;
+					white-space: nowrap;
+					text-align: left;
+					font-weight: bold;
+					color: #444;
+				}
+				/* Update content for existing and new columns */
+				td:nth-of-type(1):before {
+					content: "No.:"; /* New column */
+				}
+				td:nth-of-type(2):before {
+					content: "Content:";
+				}
+				td:nth-of-type(3):before {
+					content: "Due Date:";
+				}
+				td:nth-of-type(4):before {
+					content: "Score:";
+				}
+				td:last-child {
+					border-bottom: none;
+				}
+				tr:last-child td:first-child,
+				tr:last-child td:last-child {
+					border-radius: 0; /* Reset for responsive view */
+				}
+			}
+		</style>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<h1>Prioritized Tasks</h1>
+		<div
+			style="
+				text-align: center;
+				margin-top: 0rem;
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+			"
+		>
+			<form
+				action="{{ check_updates_url }}"
+				method="get"
+				style="display: inline"
+			>
+				<button type="submit">🔍 Check Updates</button>
+			</form>
+			<form
+				action="{{ force_sync_url }}"
+				method="get"
+				style="display: inline"
+			>
+				<button type="submit" style="background-color: #e74c3c">
+					🔄 Force Full Sync
+				</button>
+			</form>
+		</div>
+		<div id="status">
+			<span id="last-content-update"
+				>Last Content Update: {{ last_cached }}</span
+			>
+			|
+			<span id="next-update-check"
+				>next update check in: <span id="countdown"></span
+			></span>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>No.</th>
+					{# NEW COLUMN HEADER #}
+					<th>Content</th>
+					<th>Due Date</th>
+					<th>Score</th>
+				</tr>
+			</thead>
+			<tbody>
+				{# Jinja2's loop.index provides the current iteration number
+				(1-based) #} {% for task, score in tasks %}
+				<tr>
+					<td>{{ loop.index }}</td>
+					{# NEW COLUMN DATA #}
+					<td>{{ task.content }}</td>
+					{# Accessing task.due.date if task.due exists, otherwise "—"
+					#}
+					<td>{{ task.due.date if task.due else "—" }}</td>
+					{# Displaying the score directly, rounded to 1 decimal place
+					#}
+					<td>{{ score | float | round(1) }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<script>
+			// Utility: Format seconds to mm:ss
+			function formatTime(seconds) {
+			  const m = Math.floor(seconds / 60);
+			  const s = seconds % 60;
+			  return `${m.toString().padStart(2, "0")}:${s
+			    .toString()
+			    .padStart(2, "0")}`;
+			}
+
+			// Countdown timer setup
+			let secondsRemaining = {{ seconds_remaining }};
+			const cacheDuration = {{ cache_interval }};
+
+			// Update countdown and trigger refresh every second
+			function updateCountdownAndRefresh() {
+			  const countdownEl = document.getElementById("countdown");
+			  if (secondsRemaining <= 0) {
+			    // When countdown hits 0 or less, reload the page
+			    countdownEl.textContent = "Refreshing...";
+			    console.log("Countdown reached zero, reloading page for update.");
+			    location.reload(); // This is the polling part
+			  } else {
+			    countdownEl.textContent = formatTime(secondsRemaining);
+			    secondsRemaining--;
+			    setTimeout(updateCountdownAndRefresh, 1000);
+			  }
+			}
+
+			// Initialize countdown
+			updateCountdownAndRefresh();
+
+			// Relative "Last updated" text
+			function updateLastUpdated() {
+			  const lastUpdatedEl = document.getElementById("last-content-update");
+			  // Parse the last_cached string into a Date object
+			  // Ensure the format matches what Python outputs: 'YYYY-MM-DD HH:MM:SS'
+			  const lastCachedStr = "{{ last_cached }}";
+			  const lastCached = new Date(lastCachedStr.replace(/-/g, '/')); // Safari needs '/' for date parsing
+			  const now = new Date();
+			  const diffSeconds = Math.floor((now - lastCached) / 1000);
+			  let text = "Last Content Update: ";
+			  if (diffSeconds < 5) {
+			    text += "just now";
+			  } else if (diffSeconds < 60) {
+			    text += diffSeconds + " seconds ago";
+			  } else if (diffSeconds < 3600) {
+			    text += Math.floor(diffSeconds / 60) + " minutes ago";
+			  } else if (diffSeconds < 86400) { // Less than 24 hours
+			    text += Math.floor(diffSeconds / 3600) + " hours ago";
+			  } else {
+			    // For older updates, show the full date and time
+			    text += lastCached.toLocaleString();
+			  }
+			  lastUpdatedEl.textContent = text;
+			}
+
+			// Initialize "Last updated" text
+			updateLastUpdated();
+			// Update "Last updated" text every 10 seconds
+			setInterval(updateLastUpdated, 10000);
+		</script>
+	</body>
+</html>

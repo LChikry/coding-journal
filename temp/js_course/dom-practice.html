@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DOM Practice</title>
+
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			.js-subscribe-button {
+				color: #fff;
+				background-color: #000;
+				border: none;
+				border-radius: 20px;
+				padding: 0.5rem 0.8em;
+			}
+
+			.js-subscribe-button:hover,
+			.js-unsubscribe-button:hover {
+				cursor: pointer;
+			}
+			.js-unsubscribe-button {
+				color: #000000;
+				background-color: #f0f0f0;
+				border: none;
+				border-radius: 20px;
+				padding: 0.5rem 0.8em;
+			}
+
+			#shipping-calc {
+				padding: 10px;
+				font-size: 15px;
+			}
+
+			#js-calc-btn {
+				font-size: 15px;
+				padding: 12px;
+				border: none;
+				background-color: green;
+				color: white;
+				border-radius: 2px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>YouTube Subscribe Button</p>
+		<button id="js-btn-subs" type="button" class="js-subscribe-button">
+			Subscribe
+		</button>
+		<br />
+		<br />
+		<br />
+		<p>Amazon Shipping Calculator</p>
+		<p>Order <strong>under</strong> $40 = +$10 shipping</p>
+		<p>Order <strong>over</strong> $40 = <em>FREE</em> shipping</p>
+
+		<input
+			type="number"
+			max="99999"
+			name="shipping-calc"
+			id="shipping-calc"
+			placeholder="Cost of Order"
+		/>
+		<button id="js-calc-btn" type="button" class="js-calculate-button">
+			Calculate
+		</button>
+
+		<script>
+			function subscribe(subsBtn) {
+				const state = subsBtn.innerText;
+				if (state === "Subscribe") {
+					console.log("subscribing..");
+					subsBtn.innerHTML = "Subscribed!";
+					subsBtn.className = "js-unsubscribe-button";
+				} else {
+					console.log("UNsubscribing..");
+					subsBtn.innerHTML = "Subscribe";
+					subsBtn.className = "js-subscribe-button";
+				}
+			}
+
+			const subsBtn = document.getElementById("js-btn-subs");
+			subsBtn.addEventListener("click", () => {
+				subscribe(subsBtn);
+			});
+
+			function calculateShpping(value) {
+				value = Number(value);
+				if (value < 40) value += 10;
+				return `$${value}`;
+			}
+
+			function calcShippingCost() {
+				const input = document.getElementById("shipping-calc");
+				const resultPara =
+					document.getElementById("js-shipping-result");
+				if (!resultPara) {
+					const resultPara = document.createElement("p");
+					resultPara.textContent = `${calculateShpping(input.value)}`;
+					resultPara.id = "js-shipping-result";
+					document.body.appendChild(resultPara);
+				} else {
+					resultPara.innerHTML = `${calculateShpping(input.value)}`;
+				}
+			}
+
+			const calcBtn = document.getElementById("js-calc-btn");
+			calcBtn.addEventListener("click", calcShippingCost);
+
+			const input = document.getElementById("shipping-calc");
+			input.addEventListener("keydown", (event) => {
+				if (event.key !== "Enter") return;
+				calcShippingCost();
+			});
+		</script>
+	</body>
+</html>
