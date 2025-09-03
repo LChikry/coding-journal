@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Todoist Tasks</title>
+		<link rel="stylesheet" href="style.css" media="screen" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+			integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<script src="app.js" defer type="module"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Prioritized Tasks</h1>
+			<div class="buttons">
+				<button type="button" class="button button--update">
+					Check Update
+				</button>
+				<button type="button" class="button button--sync">
+					Force Full Sync
+				</button>
+			</div>
+			<p class="uptodate-info">
+				<span class="uptodate-info__status">
+					<i class="fa-solid fa-circle"></i>
+					<span class="uptodate-info__status-text"></span>
+				</span>
+				<span class="uptodate-info__last-update"></span>
+				<span class="uptodate-info__next-update">Next: 00:18</span>
+			</p>
+		</header>
+		<main>
+			<table class="task-table">
+				<caption class="removed">
+					List of all your todoist tasks ordered by score from highest
+					to lowest.
+				</caption>
+				<thead>
+					<tr class="task-table__headers">
+						<th scope="col">NO.</th>
+						<th scope="col">Content</th>
+						<th scope="col">Due Date</th>
+						<th scope="col">Score</th>
+					</tr>
+				</thead>
+				<tbody class="task-table__body"></tbody>
+			</table>
+		</main>
+	</body>
+</html>

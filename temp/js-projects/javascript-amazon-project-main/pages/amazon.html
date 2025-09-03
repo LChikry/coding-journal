@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Amazon</title>
+		<script
+			src="https://kit.fontawesome.com/6e5ef4570f.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="amazon.css" media="screen" />
+		<link rel="stylesheet" href="navbar.css" media="screen" />
+		<script src="/backend/main.js" defer></script>
+	</head>
+	<body>
+		<header class="main-header">
+			<figure class="main-header__logo-container">
+				<img
+					src="/images/amazon-logo-white.png"
+					alt="amazon logo"
+					aria-label="amazon logo"
+					class="main-header__logo"
+				/>
+				<figcaption class="removed">Amazon Logo</figcaption>
+			</figure>
+			<form class="main-header__search">
+				<input
+					type="text"
+					name="searchQuery"
+					id="search-text-box"
+					placeholder="Search"
+					class="main-header__search__textbox"
+				/>
+				<button type="submit" class="main-header__search__button">
+					<i
+						class="fa-solid fa-magnifying-glass fa-lg"
+						aria-label="magnifying glass icon for search"
+					></i>
+				</button>
+			</form>
+			<div class="main-header__orders">
+				<a
+					href="./pages/orders.html"
+					class="main-header__orders__ordered"
+				>
+					<span class="returns-text">Returns</span>
+					<span class="and-orders-text">& Orders</span></a
+				>
+				<a href="./pages/cart.html" class="main-header__orders__cart">
+					<p
+						class="main-header__orders__cart__number"
+						id="cart-number"
+					></p>
+					<i
+						class="fa-solid fa-cart-shopping fa-2xl main-header__orders__cart__icon"
+						aria-label="shopping card icon"
+					>
+					</i>
+				</a>
+			</div>
+		</header>
+		<main class="product-list"></main>
+	</body>
+</html>

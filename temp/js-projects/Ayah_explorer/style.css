@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap");
+
+@font-face {
+	font-family: "QuranFont";
+	src: url(/quran-font.woff) format("woff");
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.skip-element {
+	display: contents;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+q {
+	quotes: none;
+}
+
+html {
+	font-family: "Cairo", sans-serif;
+}
+
+body {
+	min-height: 100vh;
+	background-image: url("/bg.jpg");
+	background-size: cover;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ayah-card {
+	max-width: clamp(10vw, 800px, 85vw);
+
+	background-color: hsla(0, 0%, 100%, 0.5);
+	box-shadow: 0 0 10px -3px black;
+	border-radius: 5px;
+	padding: 20px;
+
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	gap: 2rem;
+}
+
+.ayah-card__ayah {
+	font-family: "QuranFont", "Amiri Quran", serif;
+	font-size: 2rem;
+}
+
+#surah {
+	font-family: "Noto Naskh Arabic", serif;
+	font-style: italic;
+	font-size: 1.3rem;
+}
+
+.ayah-card__buttons {
+	align-self: stretch;
+
+	margin-top: 1rem;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.button {
+	background-color: hsl(33, 89%, 64%);
+	border: none;
+	border-radius: 3px;
+
+	font-family: inherit;
+	font-weight: bolder;
+	padding: 10px 15px;
+	box-shadow: 0 0 5px -2px;
+}
+
+.button:hover,
+.button:focus-visible {
+	cursor: pointer;
+	transform: scale(1.02, 1.02);
+	background-color: hsla(0, 0%, 100%, 0.3);
+	outline: 2px solid hsl(33, 89%, 64%);
+}
+
+.button:active {
+	transform: translate(0, 3px);
+}
+
+.button:hover .fa-x-twitter,
+.button:focus-visible .fa-x-twitter {
+	color: #38a1f3;
+	transform: scale(1.5);
+}
+
+.button:hover .fa-share-nodes,
+.button:focus-visible .fa-share-nodes {
+	display: none;
+}
+
+.loader {
+	border: 16px solid white;
+	border-top-color: black;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: loaderSpin 2s linear infinite;
+}
+
+@keyframes loaderSpin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

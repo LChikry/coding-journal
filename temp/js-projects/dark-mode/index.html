@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+			integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
+		<style>
+			.toggle-switch {
+				position: relative;
+				display: inline-block;
+				width: 60px; /* Adjust as needed */
+				height: 34px; /* Adjust as needed */
+			}
+
+			.toggle-switch input {
+				opacity: 0;
+				width: 0;
+				height: 0;
+			}
+
+			.slider {
+				position: absolute;
+				cursor: pointer;
+				background-color: #ccc; /* Inactive color */
+				border-radius: 34px;
+				width: 100%;
+				height: 100%;
+				transition: background-color 0.3s; /* Smooth color transition */
+			}
+
+			.slider::before {
+				content: "";
+				position: absolute;
+				height: 26px; /* Smaller than the track */
+				width: 26px; /* Smaller than the track */
+				left: 4px;
+				bottom: 4px; /* Adjust for padding */
+				background-color: white;
+				transition: transform 0.3s; /* Smooth movement transition */
+				border-radius: 50%; /* For the circular knob */
+			}
+
+			input:checked + .slider {
+				background-color: #2196f3; /* Active color */
+			}
+
+			input:checked + .slider::before {
+				transform: translateX(26px); /* Move the knob to the right */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="theme-switch-wrapper">
+			<span id="toggle-icon">
+				<span class="toggle-text">Light Mode</span>
+				<i class="fas fa-sun"></i>
+			</span>
+			<label class="toggle-switch">
+				<input type="checkbox" />
+				<span class="slider"></span>
+			</label>
+		</div>
+	</body>
+</html>
